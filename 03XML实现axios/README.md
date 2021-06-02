@@ -7,9 +7,9 @@
       get
           请求可以传query参数
         注意： 在axios中请求配置对象params属性对应的是query参数
+[请求配置对象属性查看](https://github.com/axios/axios#request-config)
       post
           请求体传输data数据
-
 **注意：**在请求体当中发送数据时，需要设置请求体数据类型
               Content-Type: application/json -> JSON.parse(js对象)
               Content-Type: application/xxx-form-urlencoded -> ?xx=xxx&xx=xxx
