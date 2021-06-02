@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button>发送GET请求</button>
+  <button>发送POST请求</button>
+  <button>发送PUT请求</button>
+  <button>发送DELETE请求</button>
+  <script>
+    // 获取元素
+    const btns = document.querySelectorAll('button');
+    btns[0].onclick = function () {
+      console.log('44444');
+      myAxios({
+        url: 'http://localhost:3000/posts',
+        params: {
+          id: 1,
+        }
+      }).then((res) => { console.log(res) })
+    }
+    btns[1].onclick = function () {
+      myAxios({
+        method: 'post',
+        url: 'http://localhost:3000/posts',
+        data: {
+          title: "add-post",
+          author: "add-post"
+        }
+      }).then((res) => {
+        console.log(res);
+      })
+    }
+    btns[2].onclick = function () {
+      myAxios({
+        method: 'put',
+        url: 'http://localhost:3000/posts/1',
+        data: {
+          title: "add-post put",
+          author: "add-post put"
+        }
+      }).then((res) => {
+        console.log(res);
+      })
+    }
+    btns[3].onclick = function () {
+      myAxios({
+        method: 'delete',
+        url: 'http://localhost:3000/posts/10',
+      }).then((res) => {
+        console.log(res);
+      })
+    }
+    function myAxios({
+      url,
+      // 默认为GET请求
+      method = "GET",
+      params,
+      data = {}
+    }) {
+      return new Promise(function (resolve, reject) {
+        // 转换请求方法的大小写,统统转换为大写
+        method = method.toUpperCase();
+        // 创建XML对象
+        const xhr = new XMLHttpRequest();
+        // 创建请求
+        /* 
+        第三个参数为Boolean值，若为true，则请求为异步请求，若为false，为同步请求
+        */
+
+        // 判断如果请求配置里面存在params参数，那么url就要加上这个
+        if (params) {
+          const keys = Object.keys(params);
+          keys.forEach((key) => {
+            let arr = [];
+            arr.push(`${key}=${params[key]}`)
+            const result = arr.join('=');
+            url = url + '?' + result;
+          })
+        }
+        xhr.open(method, url, true);
+        if (method === 'POST' || method === 'PUT') {
+          // 发送post请求，需要在请求头设置请求体数据类型
+          xhr.setRequestHeader('Content-Type', 'application/json')
+          xhr.send(JSON.stringify(data));
+        } else {
+          xhr.send(null);
+        }
+
+        // 创建Promise
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            if (xhr.status >= 200 && xhr.status <= 300) {
+              resolve(xhr.response);
+            } else {
+              reject('request is failed, status is' + xhr.status);
+            }
+          } else {
+            return
+          }
+        }
+      })
+    }
+
+  </script>
+</body>
+
+</html>

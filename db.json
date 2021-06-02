@@ -1,0 +1,54 @@
+{
+  "posts": [
+    {
+      "title": "add-post put",
+      "author": "add-post put",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "title": "json-server2",
+      "author": "typified2"
+    },
+    {
+      "title": "put title",
+      "author": "put author",
+      "id": 3
+    },
+    {
+      "title": "text",
+      "author": "yxp",
+      "id": 5
+    },
+    {
+      "title": "text",
+      "author": "yxp",
+      "id": 6
+    },
+    {
+      "title": "text",
+      "author": "yxp",
+      "id": 7
+    },
+    {
+      "title": "add-post",
+      "author": "add-post",
+      "id": 8
+    },
+    {
+      "title": "add-post",
+      "author": "add-post",
+      "id": 9
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typified"
+  }
+}

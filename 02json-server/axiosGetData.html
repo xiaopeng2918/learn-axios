@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button>发送get请求</button>
+  <button>发送post请求</button>
+  <button>发送put请求</button>
+  <button>发送delete请求</button>
+  <!-- 本demo使用的后台服务器json-server -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.20.0/axios.min.js"></script>
+  <script>
+    // 获取按钮元素
+    const btns = document.querySelectorAll('button');
+    // get请求 传params参数返回的是指定id的对象
+    //         传query参数返回的是一个数组
+    btns[0].onclick = function () {
+      axios.get('http://localhost:3000/posts').then((res) => {
+        console.log(res.data);
+      })
+    }
+    // post请求
+    /* 
+    每发送一次请求，服务端都会增加一个文章元素，id依次加一，title和author的值为post请求传入的值
+    
+    */
+    btns[1].onclick = function () {
+      axios.post('http://localhost:3000/posts',
+        {
+          "title": "text",
+          "author": "yxp"
+        }
+      ).then((res) => {
+        console.log(res);
+      })
+    }
+    // put 请求， 修改数据
+    btns[2].onclick = function (){
+      axios.put('http://localhost:3000/posts/3',{
+        "title": "put title",
+        "author": "put author"
+      }).then((res) => {console.log(res) })
+    }
+    // delete 请求
+    btns[3].onclick = function (){
+      axios.delete('http://localhost:3000/posts/4').then((res) => {console.log(res) })
+    }
+  </script>
+</body>
+
+</html>
