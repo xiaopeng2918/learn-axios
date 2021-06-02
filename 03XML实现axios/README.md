@@ -7,9 +7,9 @@
       get
           请求可以传query参数
         注意： 在axios中请求配置对象params属性对应的是query参数
-[请求配置对象属性查看](https://github.com/axios/axios#request-config)
       post
           请求体传输data数据
+[请求配置对象属性查看](https://github.com/axios/axios#request-config)
 
 **注意**
 
